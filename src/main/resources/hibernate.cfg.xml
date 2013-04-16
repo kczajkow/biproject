@@ -6,7 +6,7 @@
  
 <hibernate-configuration>
     <session-factory>
-        <mapping class="net.viralpatel.contact.form.Contact" />
+        <mapping class="com.czajkowski.contact.form.Contact" />
     </session-factory>
 	    
 </hibernate-configuration>
