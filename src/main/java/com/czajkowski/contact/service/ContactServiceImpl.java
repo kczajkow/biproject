@@ -16,17 +16,20 @@ public class ContactServiceImpl implements ContactService {
 	@Autowired
 	private ContactDAO contactDAO;
 	
+	@Override
 	@Transactional
 	public void addContact(Contact contact) {
 		contactDAO.addContact(contact);
 	}
 
+	@Override
 	@Transactional
 	public List<Contact> listContact() {
 
 		return contactDAO.listContact();
 	}
 
+	@Override
 	@Transactional
 	public void removeContact(Integer id) {
 		contactDAO.removeContact(id);
