@@ -94,8 +94,8 @@
 <body>
 	<h2>Dashboard</h2>	
 	<h3>Chart</h3>
-		<script src="../js/highcharts.js"></script>
-		<script src="../js/modules/exporting.js"></script>
+		<script src="../resources/js/highcharts.js"></script>
+		<script src="../resources/js/modules/exporting.js"></script>
 		<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 </body>
 
