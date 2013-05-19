@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-	<title>Spring 3 MVC Series - Contact Manager</title>
+	<title>Spring 3 MVC Series - Operation Manager</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function () {
@@ -97,6 +97,35 @@
 		<script src="../resources/js/highcharts.js"></script>
 		<script src="../resources/js/modules/exporting.js"></script>
 		<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+		
+<h3>Operations</h3>
+<c:if  test="${!empty operationList}">
+<table>
+<tr>
+	<th>ID</th>
+	<th>Day</th>
+	<th>Month</th>
+	<th>Year</th>
+	<th>Title</th>
+	<th>Value</th>
+	<th>Owner</th>
+	<th>Category</th>
+</tr>
+<c:forEach items="${operationList}" var="operation">
+	<tr>
+		<td>${operation.operation_id}</td>
+		<td>${operation.operation_day}</td>
+		<td>${operation.operation_month}</td>
+		<td>${operation.operation_year}</td>
+		<td>${operation.operation_title}</td>
+		<td>${operation.operation_value}</td>
+		<td>${operation.owner.owner_desc}</td>
+		<td>${operation.category.category_desc}</td>
+	</tr>
+</c:forEach>
+</table>
+</c:if>		
+		
 </body>
 
 </html>

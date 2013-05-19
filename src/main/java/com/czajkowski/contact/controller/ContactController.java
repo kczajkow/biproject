@@ -19,11 +19,6 @@ public class ContactController {
 
 	@Autowired
 	private ContactService contactService;
-
-	@RequestMapping("/dashboard")
-	public String showDashboard(Map<String, Object> map) {
-		return "dashboard";
-	}
 	
 	@RequestMapping("/index")
 	public String listContacts(Map<String, Object> map) {

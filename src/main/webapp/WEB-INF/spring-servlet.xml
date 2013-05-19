@@ -21,7 +21,7 @@
 
 	<context:annotation-config />
 	
-	<context:component-scan base-package="com.czajkowski.contact" />
+	<context:component-scan base-package="com.czajkowski" />
 	
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	
@@ -66,7 +66,7 @@
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">do_nothing</prop>
 			</props>
 		</property>
 	</bean>
