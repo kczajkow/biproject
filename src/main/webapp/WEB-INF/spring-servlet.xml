@@ -21,13 +21,17 @@
 
 	<context:annotation-config />
 	
-	<context:component-scan base-package="com.czajkowski" />
+	<context:component-scan base-package="com.czajkowski" use-default-filters="true">
+		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+	</context:component-scan>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	
 	<mvc:annotation-driven />
 	
 	<tx:annotation-driven />
+	
+	<aop:aspectj-autoproxy/>
 	
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
