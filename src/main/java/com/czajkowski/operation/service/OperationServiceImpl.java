@@ -19,8 +19,19 @@ public class OperationServiceImpl implements OperationService {
 	@Override
 	@Transactional
 	public List<Operation> listOperation() {
-
 		return operationDAO.listOperation();
+	}
+	
+	@Override
+	@Transactional
+	public List<String> listTitle() {
+		return operationDAO.listTitle();
+	}
+	
+	@Override
+	@Transactional
+	public List<Double> listValue() {
+		return operationDAO.listValue();
 	}
 
 }

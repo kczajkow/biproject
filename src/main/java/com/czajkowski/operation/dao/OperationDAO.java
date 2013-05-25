@@ -8,4 +8,6 @@ import com.czajkowski.operation.model.Operation;
 public interface OperationDAO {
 	
 	public List<Operation> listOperation();
+	public List<String> listTitle();
+	public List<Double> listValue();
 }

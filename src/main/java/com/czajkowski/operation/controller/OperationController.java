@@ -19,6 +19,8 @@ public class OperationController {
 	public String showDashboard(Map<String, Object> map) {
 		
 		map.put("operationList", operationService.listOperation());
+		map.put("titleList", operationService.listTitle());
+		map.put("valueList", operationService.listValue());
 		
 		return "dashboard";
 	}

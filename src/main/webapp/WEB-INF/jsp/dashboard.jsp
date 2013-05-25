@@ -13,30 +13,15 @@
                 margin: [ 50, 50, 100, 80]
             },
             title: {
-                text: 'World\'s largest cities per 2008'
+                text: 'Operation History'
             },
             xAxis: {
                 categories: [
-                    'Tokyo',
-                    'Jakarta',
-                    'New York',
-                    'Seoul',
-                    'Manila',
-                    'Mumbai',
-                    'Sao Paulo',
-                    'Mexico City',
-                    'Dehli',
-                    'Osaka',
-                    'Cairo',
-                    'Kolkata',
-                    'Los Angeles',
-                    'Shanghai',
-                    'Moscow',
-                    'Beijing',
-                    'Buenos Aires',
-                    'Guangzhou',
-                    'Shenzhen',
-                    'Istanbul'
+					<%
+					for (String title : (java.util.List<String>)request.getAttribute("titleList")) {
+						out.print("'" + title + "',");
+					}
+					%>       
                 ],
                 labels: {
                     rotation: -45,
@@ -50,7 +35,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Population (millions)'
+                    text: 'Value (PLN)'
                 }
             },
             legend: {
@@ -59,15 +44,19 @@
             tooltip: {
                 formatter: function() {
                     return '<b>'+ this.x +'</b><br/>'+
-                        'Population in 2008: '+ Highcharts.numberFormat(this.y, 1) +
-                        ' millions';
+                        'Value in 03.2013: '+ Highcharts.numberFormat(this.y, 1) +
+                        ' PLN';
                 }
             },
             series: [{
-                name: 'Population',
-                data: [34.4, 21.8, 20.1, 20, 19.6, 19.5, 19.1, 18.4, 18,
-                    17.3, 16.8, 15, 14.7, 14.5, 13.3, 12.8, 12.4, 11.8,
-                    11.7, 11.2],
+                name: 'Value',
+                data: [
+   					<%
+					for (Double value : (java.util.List<Double>)request.getAttribute("valueList")) {
+						out.print(java.lang.Math.abs(value) + ",");
+					}
+					%>  
+				],
                 dataLabels: {
                     enabled: true,
                     rotation: -90,
@@ -102,25 +91,17 @@
 <c:if  test="${!empty operationList}">
 <table>
 <tr>
-	<th>ID</th>
-	<th>Day</th>
 	<th>Month</th>
 	<th>Year</th>
-	<th>Title</th>
 	<th>Value</th>
-	<th>Owner</th>
 	<th>Category</th>
 </tr>
 <c:forEach items="${operationList}" var="operation">
 	<tr>
-		<td>${operation.operation_id}</td>
-		<td>${operation.operation_day}</td>
-		<td>${operation.operation_month}</td>
-		<td>${operation.operation_year}</td>
-		<td>${operation.operation_title}</td>
-		<td>${operation.operation_value}</td>
-		<td>${operation.owner.owner_desc}</td>
-		<td>${operation.category.category_desc}</td>
+		<td>${operation[0]}</td>
+		<td>${operation[1]}</td>
+		<td>${operation[2]}</td>
+		<td>${operation[3]}</td>
 	</tr>
 </c:forEach>
 </table>
