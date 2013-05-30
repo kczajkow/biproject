@@ -2,6 +2,8 @@ package com.czajkowski.contact.controller;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,17 +32,19 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addContact(@ModelAttribute("contact")
-	Contact contact, BindingResult result) {
+	public String addContact(@ModelAttribute("contact") @Valid Contact contact, BindingResult result) {
 
+		if (result.hasErrors()) {
+			return "contact";
+		}
+		
 		contactService.addContact(contact);
-
+		
 		return "redirect:/index";
 	}
 
 	@RequestMapping("/delete/{contactId}")
-	public String deleteContact(@PathVariable("contactId")
-	Integer contactId) {
+	public String deleteContact(@PathVariable("contactId") Integer contactId) {
 
 		contactService.removeContact(contactId);
 

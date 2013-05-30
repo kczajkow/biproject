@@ -20,6 +20,17 @@
 			background-color: #5C82FF;
 			color: white;
 		}
+		.error {
+			color: #ff0000;
+		}
+ 
+		.errorblock {
+			color: #000;
+			background-color: #ffEEEE;
+			border: 3px solid #ff0000;
+			padding: 8px;
+			margin: 16px;
+		}
 	</style>
 </head>
 <body>
@@ -27,23 +38,27 @@
 <h2>Contact Manager</h2>
 
 <form:form method="post" action="add.html" commandName="contact">
-
+    <form:errors path="*" cssClass="errorblock" element="div" />
 	<table>
 	<tr>
 		<td><form:label path="firstname"><spring:message code="label.firstname"/></form:label></td>
-		<td><form:input path="firstname" /></td> 
+		<td><form:input path="firstname" /></td>
+		<td><form:errors path="firstname" cssClass="error" /></td> 
 	</tr>
 	<tr>
 		<td><form:label path="lastname"><spring:message code="label.lastname"/></form:label></td>
 		<td><form:input path="lastname" /></td>
+		<td><form:errors path="lastname" cssClass="error" /></td> 
 	</tr>
 	<tr>
 		<td><form:label path="email"><spring:message code="label.email"/></form:label></td>
 		<td><form:input path="email" /></td>
+		<td><form:errors path="email" cssClass="error" /></td> 
 	</tr>
 	<tr>
 		<td><form:label path="telephone"><spring:message code="label.telephone"/></form:label></td>
 		<td><form:input path="telephone" /></td>
+		<td><form:errors path="telephone" cssClass="error" /></td> 
 	</tr>
 	<tr>
 		<td colspan="2">

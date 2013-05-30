@@ -6,7 +6,9 @@
  
 <hibernate-configuration>
     <session-factory>
-        <mapping class="com.czajkowski.contact.form.Contact" />
+        <mapping class="com.czajkowski.operation.model.Operation" />
+        <mapping class="com.czajkowski.operation.model.Category" />
+        <mapping class="com.czajkowski.operation.model.Owner" />
     </session-factory>
 	    
 </hibernate-configuration>
