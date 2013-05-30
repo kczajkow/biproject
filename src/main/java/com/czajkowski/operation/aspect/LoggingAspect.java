@@ -12,4 +12,10 @@ public class LoggingAspect {
 		System.out.println("******LoggingAspect: " + joinPoint.getSignature().toLongString() + " is running!");
 	}
 	
+	@Before("execution(* org.springframework.orm.hibernate3.HibernateTransactionManager..*(..))")
+	public void logBeforeT(JoinPoint joinPoint) {
+		System.out.println("!!!!!!TRANSACTION: " + joinPoint.getSignature().toShortString() + " is running!");
+	}
+	
+	
 }

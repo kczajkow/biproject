@@ -29,7 +29,7 @@
 	
 	<mvc:annotation-driven />
 	
-	<tx:annotation-driven />
+	<tx:annotation-driven proxy-target-class="true"/>
 	
 	<aop:aspectj-autoproxy/>
 	

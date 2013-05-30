@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.czajkowski.operation.dao.OperationDAO;
@@ -17,19 +19,19 @@ public class OperationServiceImpl implements OperationService {
 	private OperationDAO operationDAO;
 
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Operation> listOperation() {
 		return operationDAO.listOperation();
 	}
 	
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, readOnly=true)
 	public List<String> listTitle() {
 		return operationDAO.listTitle();
 	}
 	
 	@Override
-	@Transactional
+	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED, readOnly=true)
 	public List<Double> listValue() {
 		return operationDAO.listValue();
 	}
