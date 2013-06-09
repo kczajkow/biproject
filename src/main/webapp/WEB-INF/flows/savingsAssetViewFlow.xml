@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="savingsAssetModel" class="net.javeabet.spring.webflow.assetmgmt.savings.SavingsAssetModel"/>
+
+    <view-state id="savingsAssetViewId" model="savingsAssetModel" view="/WEB-INF/jsp/savings/savingsAssetHomeView.jspx">
+        <transition on="loginForSavingsAsset" to="validateSavingsAssetCredentialsAction" />
+    </view-state>
+
+    <action-state id="validateSavingsAssetCredentialsAction">
+        <evaluate expression="savingsAssetService.isCredentialValid(savingsAssetModel.username, savingsAssetModel.password)" result="flowScope.isSavingsAssetCredentialsValid" />
+        <transition to="checkSavingsAssetCredentialsValid" />
+    </action-state>
+
+    <decision-state id="checkSavingsAssetCredentialsValid">
+        <if test="flowScope.isSavingsAssetCredentialsValid" then="fetchSavingsDetailsAction" else="invalidSavingsAssetCredentialsView"/>
+    </decision-state>
+
+    <action-state id="fetchSavingsDetailsAction">
+        <evaluate expression="savingsAssetService.getSavingsDetails(savingsAssetModel.username, savingsAssetModel.password)" result="flowScope.savingsDetails" />
+        <transition to="savingsAssetDetailsViewId" />
+    </action-state>
+
+    <view-state id="savingsAssetDetailsViewId" view="/WEB-INF/jsp/savings/savingsAssetDetailsView.jspx">
+    </view-state>
+
+   <view-state id="invalidSavingsAssetCredentialsView" view="/WEB-INF/jsp/savings/invalidSavingsAssetCredentialView.jspx" />
+
+</flow>

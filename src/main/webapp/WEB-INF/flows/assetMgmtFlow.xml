@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="assetMgmtModel" class="net.javeabet.spring.webflow.assetmgmt.AssetManagementModel"/>
+
+    <view-state id="assetMgmtHomeView" model="assetMgmtModel" view="/WEB-INF/jsp/assetMgmtHomeView.jspx">
+        <transition on="login" to="validateCredentialsAction" />
+    </view-state>
+
+    <action-state id="validateCredentialsAction">
+        <evaluate expression="assetManagementService.isCredentialValid(assetMgmtModel.username, assetMgmtModel.password)" result="flowScope.isCredentialsValid" />
+        <transition to="checkCredentialsValid" />
+    </action-state>
+
+    <decision-state id="checkCredentialsValid">
+        <if test="flowScope.isCredentialsValid" then="assetDetailsViewId" else="invalidCredentialsView"/>
+    </decision-state>
+
+    <view-state id="assetDetailsViewId" view="/WEB-INF/jsp/assetDetailsView.jspx">
+        <transition on="loginForSavingsAsset" to="savingsAssetViewId" />
+        <transition on="mfAssetView" to="mfAssetViewId" />
+        <transition on="stocksAssetView" to="stocksAssetViewId" />
+    </view-state>
+
+    <subflow-state id="savingsAssetViewId" subflow="savingsAssetViewFlow">
+        <input name="assetMgmtModel" />
+    </subflow-state>
+
+    <end-state id="invalidCredentialsView" view="/WEB-INF/jsp/invalidAssetCredentialsView.jspx" />
+
+</flow>
