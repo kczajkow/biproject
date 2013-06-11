@@ -21,8 +21,8 @@
 
     <view-state id="assetDetailsViewId" view="/WEB-INF/jsp/assetDetailsView.jspx">
         <transition on="loginForSavingsAsset" to="savingsAssetViewId" />
-        <transition on="mfAssetView" to="mfAssetViewId" />
-        <transition on="stocksAssetView" to="stocksAssetViewId" />
+        <!--transition on="mfAssetView" to="mfAssetViewId" /-->
+        <!--transition on="stocksAssetView" to="stocksAssetViewId" /-->
     </view-state>
 
     <subflow-state id="savingsAssetViewId" subflow="savingsAssetViewFlow">
