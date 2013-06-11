@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.czajkowski.contact.dao.ContactDAO;
+import com.czajkowski.contact.dao.WeatherDAO;
 import com.czajkowski.contact.form.Contact;
-
+import com.czajkowski.contact.model.Weather;
 
 @Service
 public class ContactServiceImpl implements ContactService {
 
 	@Autowired
 	private ContactDAO contactDAO;
+	@Autowired
+	private WeatherDAO weatherDAO;
 	
 	@Override
 	@Transactional
@@ -25,8 +28,12 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	@Transactional
 	public List<Contact> listContact() {
-
 		return contactDAO.listContact();
+	}
+	
+	@Override
+	public Weather getWeather() {
+		return weatherDAO.getWeather();
 	}
 
 	@Override

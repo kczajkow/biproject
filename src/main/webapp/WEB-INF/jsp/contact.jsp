@@ -89,6 +89,11 @@
 </table>
 </c:if>
 
+<h3>Weather</h3>
+Title: ${weather.channel.title} <br>
+Today's astronomy: <br>
+Sunrise at ${weather.channel.astronomy.sunrise} <br>
+Sunset at ${weather.channel.astronomy.sunset} <br>
 
 </body>
 </html>
