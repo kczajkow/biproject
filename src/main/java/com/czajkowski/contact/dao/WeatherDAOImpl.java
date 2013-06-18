@@ -17,6 +17,8 @@ public class WeatherDAOImpl implements WeatherDAO {
 	public Weather getWeather() {
 		String weatherSearchUrl = "http://weather.yahooapis.com/forecastrss?w={cityID}&u=c";
 		Source weatherSource = new RestTemplate().getForObject(weatherSearchUrl, Source.class, "511360");
+		//String weatherStr = new RestTemplate().getForObject(weatherSearchUrl, String.class, "511360");
+		//System.out.println(weatherStr);
 		Weather weather = null;
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(Weather.class);
