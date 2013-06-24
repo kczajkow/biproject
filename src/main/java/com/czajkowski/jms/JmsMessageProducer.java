@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,6 +24,7 @@ public class JmsMessageProducer {
     @Autowired
     private JmsTemplate template = null;
     private int messageCount = 10;
+    private int logCount = 0;
 
     /**
      * Generates JMS messages
@@ -44,6 +46,11 @@ public class JmsMessageProducer {
                 }
             });
         }
+    }
+    
+    @Scheduled(cron="0/3 * * * * *")
+    public void generateLogs() {
+    	logger.info("Writing scheduled log number: " + ++logCount);
     }
 
 }
