@@ -26,7 +26,8 @@
 		<param-value>
 			/WEB-INF/spring-servlet.xml,
 			/WEB-INF/spring-security.xml,
-			/WEB-INF/spring-jms.xml
+			/WEB-INF/spring-jms.xml,
+			/WEB-INF/spring-mail.xml
 		</param-value>
 	</context-param>
 	<!-- Spring Security -->

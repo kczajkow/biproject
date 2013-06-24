@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.czajkowski.jms.JmsMessageProducer;
+import com.czajkowski.mail.MailMail;
 
 @Component
 public class JmsMessageListener implements MessageListener { 
@@ -21,6 +22,9 @@ public class JmsMessageListener implements MessageListener {
 
     @Autowired
     private AtomicInteger counter = null;
+    
+    @Autowired
+    private MailMail mailMail;
 
     /**
      * Implementation of <code>MessageListener</code>.
@@ -28,6 +32,11 @@ public class JmsMessageListener implements MessageListener {
     public void onMessage(Message message) {
         try {   
             int messageCount = message.getIntProperty(JmsMessageProducer.MESSAGE_COUNT);
+            
+            if (messageCount == 5) {
+            	//logger.info("SENDING MAIL !!!");
+            	//mailMail.sendMail("Krzysiek", "This is text content");
+            }
             
             if (message instanceof TextMessage) {
                 TextMessage tm = (TextMessage)message;
