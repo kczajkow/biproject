@@ -1,6 +1,9 @@
 package com.czajkowski.contact.controller;
 
+import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import javax.validation.Valid;
 
@@ -29,6 +32,27 @@ public class ContactController {
 		map.put("contactList", contactService.listContact());
 		
 		map.put("weather", contactService.getWeather());
+		
+		//Async test
+		System.out.println("Async BEFORE time:" + new Date());
+		Future<Integer> future = contactService.getMath(123);
+		System.out.println("Async AFTER time:" + new Date());
+		System.out.println("Async isDone 1: " + future.isDone());
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Async isDone 2: " + future.isDone());
+		if (future.isDone()) {
+			try {
+				System.out.println("Async get: " + future.get());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
 
 		return "contact";
 	}

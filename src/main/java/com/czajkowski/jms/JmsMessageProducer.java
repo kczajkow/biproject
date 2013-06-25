@@ -50,7 +50,7 @@ public class JmsMessageProducer {
     
     @Scheduled(cron="0/3 * * * * *")
     public void generateLogs() {
-    	logger.info("Writing scheduled log number: " + ++logCount);
+    	//logger.info("Writing scheduled log number: " + ++logCount);
     }
 
 }
